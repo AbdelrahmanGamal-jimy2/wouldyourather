@@ -15,7 +15,7 @@ class Login extends Component
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </Form.Select>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick = {this.handleLogin}>
                     Login
                 </Button>
             </div>
