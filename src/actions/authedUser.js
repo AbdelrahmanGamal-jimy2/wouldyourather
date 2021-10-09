@@ -1,5 +1,5 @@
-const SET_Authed_USER = "SET_Authed_USER"
-const REMOVE_AUTHED_USER = "REMOVE_AUTHED_USER"
+export const SET_Authed_USER = "SET_Authed_USER"
+export const REMOVE_AUTHED_USER = "REMOVE_AUTHED_USER"
 
 export function setAuthed(id)
 {
