@@ -2,11 +2,14 @@ import React, {Component } from 'react'
 import connect from 'react-redux'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+
+import {setAuthed} from '../actions/authedUser'
 class Login extends Component
 {
     handleLogin = (e)=>
     {
-
+        e.preventDefault()
+        const {dispatch} = this.props
     }
     render()
     {
@@ -26,4 +29,4 @@ class Login extends Component
         )
     }
 }
-export default Login   
+export default (connect)(Login)   
