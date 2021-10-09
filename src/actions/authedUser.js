@@ -5,7 +5,7 @@ export function setAuthed(id)
 {
     return
     {
-        SET_Authed_USER,
+        type: SET_Authed_USER,
         id
     }
 }
@@ -14,6 +14,6 @@ export function removedAuthed()
 {
     return
     {
-        REMOVE_AUTHED_USER
+        type: REMOVE_AUTHED_USER
     }
 }

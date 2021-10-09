@@ -1,5 +1,5 @@
 import React, {Component } from 'react'
-import Dropdown from 'react-bootstrap/Dropdown'
+import connect from 'react-redux'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 class Login extends Component
@@ -27,14 +27,3 @@ class Login extends Component
     }
 }
 export default Login   
-/*                <Dropdown>
-<Dropdown.Toggle variant="success" id="dropdown-basic">
-Select a user
-</Dropdown.Toggle>
-
-<Dropdown.Menu>
-<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-</Dropdown.Menu>
-</Dropdown>*/
