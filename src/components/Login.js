@@ -1,5 +1,5 @@
 import React, {Component } from 'react'
-import connect from 'react-redux'
+import {connect} from 'react-redux'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -9,7 +9,7 @@ class Login extends Component
     handleLogin = (e)=>
     {
         e.preventDefault()
-        const {dispatch} = this.props
+        //const {dispatch} = this.props
     }
     render()
     {
@@ -28,5 +28,6 @@ class Login extends Component
             </div>
         )
     }
+    //function mapStateToProps({})
 }
-export default (connect)(Login)   
+export default connect()(Login)   
