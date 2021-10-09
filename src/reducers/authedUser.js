@@ -1,10 +1,12 @@
-import {SET_Authed_USER} from '../actions/authedUser'
+import {SET_AUTHED_USER} from '../actions/authedUser'
 import {REMOVE_AUTHED_USER} from '../actions/authedUser'
 
 export default function authedUser(state = null, action){
+    console.log(action.type)
     switch(action.type)
     {
-        case SET_Authed_USER:
+        case SET_AUTHED_USER:
+            console.log("here")
             {
                 return action.id
             }

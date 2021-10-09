@@ -1,10 +1,11 @@
-export const SET_Authed_USER = "SET_Authed_USER"
+export const SET_AUTHED_USER = "SET_AUTHED_USER"
 export const REMOVE_AUTHED_USER = "REMOVE_AUTHED_USER"
 
 export function setAuthed(id)
 {
+    console.log("at action")
     return{
-        type: SET_Authed_USER,
+        type: SET_AUTHED_USER,
         id
     }
 }

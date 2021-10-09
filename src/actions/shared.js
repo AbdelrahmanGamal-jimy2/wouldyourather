@@ -8,7 +8,7 @@ export function handleIntialUsers()
 {
     return(dispatch)=>
     {
-        return _getUsers().then(({users})=>{
+        return _getUsers().then((users)=>{
             dispatch(getUsers(users))
         })
     }

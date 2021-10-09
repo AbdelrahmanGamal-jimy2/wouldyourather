@@ -6,7 +6,7 @@ export default function users(state = {}, action)
     {
         case GET_USERS:
             {
-
+                console.log("here")
                 return{
                     ...state,
                     ...action.users,
