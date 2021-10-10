@@ -12,7 +12,6 @@ class NewQuestion extends Component
     addQuestion = (e)=>
     {
         e.preventDefault()
-        console.log(e.target[0].value,e.target[1].value)
         this.props.dispatch(addQuestionToAPI(e.target[0].value,e.target[1].value))
         this.props.dispatch(handleIntialQuestions())
     }
@@ -27,8 +26,8 @@ class NewQuestion extends Component
                         <Form.Control type="text" placeholder="Enter option1" />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="option 2">
-                        <Form.Label>Password</Form.Label>
+                    <Form.Group className="mb-3" controlId="formOption2">
+                        <Form.Label>option2</Form.Label>
                         <Form.Control type="text" placeholder="Enter Option2" />
                     </Form.Group>
                     <Button variant="primary" type="submit">

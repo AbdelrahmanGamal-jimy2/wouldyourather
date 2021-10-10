@@ -21,11 +21,14 @@ export function addQuestion(question)
         question
     }
 }
-export function addAnswer(answer)
+export function addAnswer({authedUser, qid, answer})
 {
     return{
         type: ADD_ANSWER,
-        answer
+        answered: {authedUser,
+            qid,
+            answer
+        }
     }
 }
 export function addQuestionToAPI(option1, option2)
@@ -51,7 +54,11 @@ export function addAnswerToAPI(autherID, qID, answer)
             authedUser: autherID,
             qid: qID,
             answer: answer
-         }).then((question)=> dispatch(addQuestion(question)))
+         }).then(()=> dispatch(addAnswer({
+            authedUser: autherID,
+            qid: qID,
+            answer: answer
+         })))
     }
     )
 }

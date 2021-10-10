@@ -7,7 +7,9 @@ import Question from "./Question";
 
 class Home extends Component
 {
-    
+    generateUID () {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+      }
     render()
     {
         const {answeredQIDS} = this.props
@@ -19,14 +21,14 @@ class Home extends Component
                 <Tab eventKey="home" title="Unanswered Questions ">
                     <ul>
                         {
-                            answeredQIDS.map((q)=> <li key={q}> <Question qID= {q}></Question></li>)
+                            unansweredQIDS.map((q)=> <li key={this.generateUID()}> <Question qID= {q}></Question></li>)
                         }
                     </ul>
-                </Tab>
+                </Tab>  
                 <Tab eventKey="profile" title="Answered Questions ">
                      <ul>
                         {
-                            unansweredQIDS.map((q)=> <li key={q}> <Question qID= {q}></Question></li>)
+                            answeredQIDS.map((q)=> <li key={this.generateUID()}> <Question qID= {q}></Question></li>)
                         }
                     </ul>
                 </Tab>

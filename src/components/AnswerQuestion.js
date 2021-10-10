@@ -4,9 +4,27 @@ import { connect } from "react-redux";
 import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form'
+import {addAnswerToAPI} from '../actions/questions'
+import {handleIntialQuestions} from '../actions/shared'
+
+
 
 class AnswerQuestion extends Component
 {
+    addAnswer = (e)=>
+    {   e.preventDefault()
+        console.log("at answer")
+        console.log("at answer " ,e.target[0])
+        if(e.target[0].checked)
+        {
+            this.props.dispatch((addAnswerToAPI(this.props.authedUser, this.props.qID, "optionOne")))
+        }
+        else{
+            this.props.dispatch((addAnswerToAPI(this.props.authedUser, this.props.qID, "optionTwo")))
+        }
+        this.props.dispatch(handleIntialQuestions())
+
+    }
     render()
     {
         const {questions} = this.props
@@ -19,7 +37,7 @@ class AnswerQuestion extends Component
                     <Card.Img variant="top" src={users[questions[this.props.qID].author].avatarURL} />
                     <Card.Body>
                     <Card.Subtitle >Would you rather</Card.Subtitle>
-                    <Form>
+                    <Form onSubmit={this.addAnswer}>
                         <Form.Check
                                 defaultChecked
                                 name="1"
@@ -33,7 +51,7 @@ class AnswerQuestion extends Component
                                 label={ questions[this.props.qID].optionTwo.text}
                                 id={`default` +  this.props.qID}
                         />
-                        <Button variant="primary">Submit answer</Button>
+                        <Button variant="primary" type= "submit"> Submit answer</Button>
                     </Form>
                      </Card.Body>
             </Card>
@@ -41,11 +59,12 @@ class AnswerQuestion extends Component
         )
     }
 }
-function mapStateToProps({questions, users}, {qID})
+function mapStateToProps({questions, users, authedUser}, {qID})
 {
     return{
         questions,
         users,
+        authedUser
     }
 }
 export default connect(mapStateToProps) (AnswerQuestion)
