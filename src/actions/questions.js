@@ -25,10 +25,6 @@ export function addAnswer({authedUser, qid, answer})
 {
     return{
         type: ADD_ANSWER,
-        answered: {authedUser,
-            qid,
-            answer
-        }
     }
 }
 export function addQuestionToAPI(option1, option2)
