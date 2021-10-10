@@ -1,6 +1,11 @@
+import { _saveQuestion } from "../utils/_DATA"
+import { _saveQuestionAnswer } from "../utils/_DATA"
+
 export const GET_QUESTIONS = "GET_QUESTIONS"
 export const ADD_QUESTION = "ADD_QUESTION"
 export const ADD_ANSWER = "ADD_ANSWER"
+
+
 
 export function getQuestions(questions)
 {
@@ -22,4 +27,31 @@ export function addAnswer(answer)
         type: ADD_ANSWER,
         answer
     }
+}
+export function addQuestionToAPI(option1, option2)
+{
+    
+    return ((dispatch, getState)=>
+    {
+        const {authedUser} = getState()
+        return _saveQuestion({optionOneText: option1,
+            optionTwoText: option2,
+            author: authedUser
+         }).then((question)=> dispatch(addQuestion(question)))
+    }
+    )
+}
+
+export function addAnswerToAPI(autherID, qID, answer)
+{
+    
+    return ((dispatch)=>
+    {
+        return _saveQuestionAnswer({
+            authedUser: autherID,
+            qid: qID,
+            answer: answer
+         }).then((question)=> dispatch(addQuestion(question)))
+    }
+    )
 }
