@@ -10,6 +10,7 @@ import Image from 'react-bootstrap/Image'
 import {connect} from 'react-redux'
 
 import {removedAuthed} from '../actions/authedUser'
+import { Redirect } from "react-router";
 
 
 class NavigationBar extends Component
@@ -21,19 +22,24 @@ class NavigationBar extends Component
     }
     render()
     {  
+        console.log(this.props.user)
+        if(this.props.user === undefined)
+        {
+            return <Redirect to="/" />
+        }
         const {user} = this.props
         console.log(user)
         return(
             <div>
                 <Navbar>
                     <Container>
-                    <Navbar.Brand href="#home">Would You Rather?</Navbar.Brand>
+                    <Navbar.Brand href="/home">Would You Rather?</Navbar.Brand>
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Toggle />
                             <Nav className="me-auto">
-                                <Nav.Link href="#home">Home</Nav.Link>
-                                <Nav.Link href="#link">New Question</Nav.Link>
-                                <Nav.Link href="#link">Leaderboard</Nav.Link>
+                                <Nav.Link href="/home">Home</Nav.Link>
+                                <Nav.Link href="new">New Question</Nav.Link>
+                                <Nav.Link href="/leader">Leaderboard</Nav.Link>
                             </Nav>
                             <Navbar.Text>
                                 Signed in as: {user === undefined? "": user.name}

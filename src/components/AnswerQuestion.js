@@ -29,7 +29,6 @@ class AnswerQuestion extends Component
     {
         const {questions} = this.props
         const {users} = this.props
-        console.log("question1",questions[this.props.qID].optionOne.text )
         return (
             <div>
                 <Card style={{ width: '18rem' }}>

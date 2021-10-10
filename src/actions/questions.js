@@ -21,10 +21,16 @@ export function addQuestion(question)
         question
     }
 }
-export function addAnswer({authedUser, qid, answer})
+export function addAnswer({authedUser , qid, answer})
 {
     return{
         type: ADD_ANSWER,
+        info:
+        {
+            authedUser,
+            qid,
+            answer
+        }
     }
 }
 export function addQuestionToAPI(option1, option2)
@@ -41,20 +47,20 @@ export function addQuestionToAPI(option1, option2)
     )
 }
 
-export function addAnswerToAPI(autherID, qID, answer)
+export function addAnswerToAPI(authedUser, qid, answer)
 {
     
     return ((dispatch)=>
     {
         return _saveQuestionAnswer({
-            authedUser: autherID,
-            qid: qID,
-            answer: answer
+            authedUser,
+            qid,
+            answer
          }).then(()=> dispatch(addAnswer({
-            authedUser: autherID,
-            qid: qID,
-            answer: answer
-         })))
+            authedUser,
+            qid,
+            answer
+         }))).catch("errors")
     }
     )
 }

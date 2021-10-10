@@ -1,13 +1,17 @@
 import React from "react"
-import { Component } from "react"
+import { Component, Fragment } from "react"
 import Login from "./Login"
 import {connect} from 'react-redux'
-import NavigationBar from "./NavigationBar"
 import Home from './Home'
-import {setAuthed} from '../actions/authedUser'
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import NewQuestion from "./NewQuestion"
+import NavigationBar from "./NavigationBar"
 
+
+import {setAuthed} from '../actions/authedUser'
 import {handleIntialUsers} from '../actions/shared'
 import {handleIntialQuestions} from '../actions/shared'
+import LeaderBoard from "./LeaderBoard"
 
 class App extends Component 
 {
@@ -20,11 +24,15 @@ class App extends Component
   render()
   {
     return (
-    <div className="App">
-      <Login></Login>
-      <NavigationBar></NavigationBar>
-      <Home></Home>
-    </div>
+      <Router>
+            <div className="App">
+              <NavigationBar/>
+              <Route path='/' exact component={Login}/>
+              <Route path='/home' component={Home}/>
+              <Route path='/new' component={NewQuestion}/>
+              <Route path='/Leader' component={LeaderBoard}/>
+          </div>
+      </Router>
     )
   } 
 }

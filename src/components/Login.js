@@ -3,9 +3,13 @@ import {connect} from 'react-redux'
 import Form from 'react-bootstrap/Form'
 
 import {setAuthed} from '../actions/authedUser'
+import {Redirect} from 'react-router-dom'
 
 class Login extends Component
 {
+    state = {
+        loggedIn: false
+    }
     handleLogin = (e)=>
     {
         e.preventDefault()
@@ -16,6 +20,12 @@ class Login extends Component
     render()
     {
         const {users} = this.props
+        const {authedUser} = this.props
+        console.log(authedUser !== undefined)
+        if(authedUser !== undefined)
+        {
+            return (<Redirect to='/home' />)
+        }   
         return (
             <div>
                 <h1>Please select a user to login with.....</h1>
@@ -27,10 +37,11 @@ class Login extends Component
         )
     }
 }
-function mapStateToProps({users})
+function mapStateToProps({users, authedUser})
 {
     return{
-        users
+        users,
+        authedUser
     }
 }
 export default connect(mapStateToProps)(Login)   

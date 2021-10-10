@@ -22,8 +22,18 @@ export default function questions(state = {}, action)
             }
         case  ADD_ANSWER:
             {
-                console.log("action is", action)
+                const { authedUser, qid, answer } = action.info;
                 return{
+                    ...state,
+                    [qid]:{
+                        ...state[qid],
+                        [answer]:
+                        {
+                            ...state[qid][answer],
+                            votes: state[qid][answer].votes.concat([authedUser])
+                        }
+
+                    }
                 }
             }
         default: return state

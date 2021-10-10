@@ -5,6 +5,7 @@ import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import Question from "./Question";
 
+
 class Home extends Component
 {
     generateUID () {
@@ -17,23 +18,24 @@ class Home extends Component
         console.log(answeredQIDS)
         console.log(unansweredQIDS)
         return(
-            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
-                <Tab eventKey="home" title="Unanswered Questions ">
-                    <ul>
-                        {
-                            unansweredQIDS.map((q)=> <li key={this.generateUID()}> <Question qID= {q}></Question></li>)
-                        }
-                    </ul>
-                </Tab>  
-                <Tab eventKey="profile" title="Answered Questions ">
-                     <ul>
-                        {
-                            answeredQIDS.map((q)=> <li key={this.generateUID()}> <Question qID= {q}></Question></li>)
-                        }
-                    </ul>
-                </Tab>
-            </Tabs>
-
+            <div>
+                <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
+                    <Tab eventKey="home" title="Unanswered Questions ">
+                        <ul>
+                            {
+                                unansweredQIDS.map((q)=> <li key={this.generateUID()}> <Question qID= {q}></Question></li>)
+                            }
+                        </ul>
+                    </Tab>  
+                    <Tab eventKey="profile" title="Answered Questions ">
+                        <ul>
+                            {
+                                answeredQIDS.map((q)=> <li key={this.generateUID()}> <Question qID= {q}></Question></li>)
+                            }
+                        </ul>
+                    </Tab>
+                </Tabs>
+            </div>
         )
     }
 }   

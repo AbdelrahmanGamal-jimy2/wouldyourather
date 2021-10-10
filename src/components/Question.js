@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button";
 import AnswerQuestion from "./AnswerQuestion";
 import NewQuestion from './NewQuestion'
+import LeaderBoard from "./LeaderBoard";
 
 class Question extends Component
 {
@@ -26,8 +27,6 @@ class Question extends Component
                     <Button variant="primary">View Pull</Button>
                 </Card.Body>
             </Card>
-            <AnswerQuestion qID = {this.props.qID}></AnswerQuestion>
-            <NewQuestion></NewQuestion>
         </div>
         )
     }
