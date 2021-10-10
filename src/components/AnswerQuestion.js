@@ -37,11 +37,12 @@ class AnswerQuestion extends Component
         const {users} = this.props
         const qID = this.props.match.params.id;
         console.log(users,questions)
-        console.log(users[questions[qID].author].name)
+        console.log(users[questions[qID].author])
         const name = users[questions[qID].author].name
-        const url = users[questions[this.props.qID].author].avatarURL
+        const url = users[questions[qID].author].avatarURL
         return (
-            <div>
+            users[questions[qID].author].name !== undefined?             
+                <div>
                 <Card style={{ width: '18rem' }}>
                     <Card.Title>Asked by {name}</Card.Title>
                     <Card.Img variant="top" src={url} />
@@ -52,20 +53,22 @@ class AnswerQuestion extends Component
                                 defaultChecked
                                 name="1"
                                 type={"radio"}
-                                label={questions[this.props.qID].optionOne.text}
+                                label={questions[qID].optionOne.text}
                                 id = "default"
                         />
                         <Form.Check
                                 name="1"
                                 type={"radio"}
-                                label={ questions[this.props.qID].optionTwo.text}
-                                id={`default` +  this.props.qID}
+                                label={ questions[qID].optionTwo.text}
+                                id={`default` +  qID}
                         />
                         <Button variant="primary" type= "submit"> Submit answer</Button>
                     </Form>
                      </Card.Body>
-            </Card>
-            </div>
+                </Card>
+                </div>
+            :
+            <div></div>
         )
     }
 }
