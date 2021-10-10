@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { connect } from "react-redux";
 import LeaderCard from "./LeaderCard";
+import { Redirect } from "react-router";
 
 class LeaderBoard extends Component
 {
@@ -9,6 +10,10 @@ class LeaderBoard extends Component
     render()
     {
         const {users} = this.props
+        if(this.props.authedUser === null)
+        {
+            return <Redirect to="/" ></Redirect>
+        }
         Object.keys(users).map((id)=> {
             console.log(users[id].name)
             console.log(users[id].questions.length)
@@ -23,10 +28,11 @@ class LeaderBoard extends Component
         )
     }
 }
-function mapStateToProps({users})
+function mapStateToProps({users, authedUser})
 {
     return{
-        users
+        users,
+        authedUser
     }
 }
 export default connect(mapStateToProps)(LeaderBoard)

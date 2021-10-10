@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import AnswerQuestion from "./AnswerQuestion";
 import NewQuestion from './NewQuestion'
 import LeaderBoard from "./LeaderBoard";
+import { Link } from "react-router-dom";
 
 class Question extends Component
 {
@@ -13,8 +14,10 @@ class Question extends Component
     {
         const {questions} = this.props
         const {users} = this.props
+        const {qID} = this.props
+
         return(
-        <div>
+        <Link to={`/pull/${qID}`}>
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={users[questions[this.props.qID].author].avatarURL} />
                 <Card.Body>
@@ -27,7 +30,7 @@ class Question extends Component
                     <Button variant="primary">View Pull</Button>
                 </Card.Body>
             </Card>
-        </div>
+        </Link>
         )
     }
 }

@@ -6,6 +6,12 @@ import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form'
 import {addAnswerToAPI} from '../actions/questions'
 import {handleIntialQuestions} from '../actions/shared'
+import {Link} from 'react-router-dom'
+import { withRouter } from "react-router";
+
+
+import { useParams } from 'react-router-dom';
+
 
 
 
@@ -29,11 +35,16 @@ class AnswerQuestion extends Component
     {
         const {questions} = this.props
         const {users} = this.props
+        const qID = this.props.match.params.id;
+        console.log(users,questions)
+        console.log(users[questions[qID].author].name)
+        const name = users[questions[qID].author].name
+        const url = users[questions[this.props.qID].author].avatarURL
         return (
             <div>
                 <Card style={{ width: '18rem' }}>
-                    <Card.Title>Asked by {users[questions[this.props.qID].author].name}</Card.Title>
-                    <Card.Img variant="top" src={users[questions[this.props.qID].author].avatarURL} />
+                    <Card.Title>Asked by {name}</Card.Title>
+                    <Card.Img variant="top" src={url} />
                     <Card.Body>
                     <Card.Subtitle >Would you rather</Card.Subtitle>
                     <Form onSubmit={this.addAnswer}>
@@ -60,10 +71,12 @@ class AnswerQuestion extends Component
 }
 function mapStateToProps({questions, users, authedUser}, {qID})
 {
+
     return{
         questions,
         users,
-        authedUser
+        authedUser,
+        qID
     }
 }
-export default connect(mapStateToProps) (AnswerQuestion)
+export default withRouter(connect(mapStateToProps) (AnswerQuestion))

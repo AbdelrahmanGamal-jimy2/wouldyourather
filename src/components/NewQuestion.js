@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import {addQuestionToAPI} from '../actions/questions'
 import {connect} from 'react-redux'
 import {handleIntialQuestions} from '../actions/shared'
+import { Redirect } from "react-router";
 
 
 class NewQuestion extends Component
@@ -17,6 +18,12 @@ class NewQuestion extends Component
     }
     render()
     {
+
+        const {users} = this.props
+        if(this.props.authedUser === null)
+        {
+            return <Redirect to="/" ></Redirect>
+        }
         return(
             <div>
                 <Form onSubmit= {this.addQuestion}>
@@ -38,4 +45,10 @@ class NewQuestion extends Component
         )
     }
 }
-export default connect() (NewQuestion)
+function mapStateToProps({ authedUser})
+{
+    return{
+        authedUser
+    }
+}
+export default connect(mapStateToProps) (NewQuestion)

@@ -1,5 +1,5 @@
 import React from "react"
-import { Component, Fragment  } from "react"
+import { Component, Fragment } from "react"
 import Login from "./Login"
 import {connect} from 'react-redux'
 import Home from './Home'
@@ -13,9 +13,8 @@ import {setAuthed} from '../actions/authedUser'
 import {handleIntialUsers} from '../actions/shared'
 import {handleIntialQuestions} from '../actions/shared'
 import LeaderBoard from "./LeaderBoard"
-import LoggedApp from "./LoggedApp"
 
-class App extends Component 
+class LoggedApp extends Component 
 {
   componentDidMount()
   {
@@ -25,18 +24,19 @@ class App extends Component
   
   render()
   {
-      return(
-        <Fragment>
-            {this.props.authedUser === null ? <Login> </Login>:<LoggedApp></LoggedApp>}
-      </Fragment>
-      )
+    return (
+      <Router>
+            <div className="App">
+              <NavigationBar/>
+              <Route path='/' exact component={Login}/>
+              <Route path='/home' component={Home}/>
+              <Route path='/pull/:id' component={AnswerQuestion}/>
+              <Route path='/new' component={NewQuestion}/>
+              <Route path='/Leader' component={LeaderBoard}/>
+          </div>
+      </Router>
+    )
   } 
 }
-function mapStateToProps({authedUser})
-{
-    return{
-      authedUser
-    }
-}
 
-export default connect(mapStateToProps)(App);
+export default connect()(LoggedApp);

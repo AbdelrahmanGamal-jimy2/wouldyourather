@@ -1,8 +1,9 @@
 import React from "react";
 import { Component } from "react";
 
-import { Container } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar'
+import { NavLink, Link } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav'
 import Button from "react-bootstrap/Button";
 import Image from 'react-bootstrap/Image'
@@ -15,31 +16,39 @@ import { Redirect } from "react-router";
 
 class NavigationBar extends Component
 {
+
+    
     handleLogOut = (e)=>
     {
         console.log("logOut")
-        this.props.dispatch(removedAuthed(this.props.user.id))
+        if(this.props.user!== undefined )
+        {
+            this.props.dispatch(removedAuthed(this.props.user.id))
+        }
+        else
+        {
+            console.log("Already logged out")
+        }
+        
+    }
+    onNavigate =(e)=>
+    {
+        
     }
     render()
     {  
-        console.log(this.props.user)
-        if(this.props.user === undefined)
-        {
-            return <Redirect to="/" />
-        }
         const {user} = this.props
-        console.log(user)
         return(
             <div>
                 <Navbar>
                     <Container>
-                    <Navbar.Brand href="/home">Would You Rather?</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/">Would You Rather?</Navbar.Brand>
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Toggle />
                             <Nav className="me-auto">
-                                <Nav.Link href="/home">Home</Nav.Link>
-                                <Nav.Link href="new">New Question</Nav.Link>
-                                <Nav.Link href="/leader">Leaderboard</Nav.Link>
+                                <Nav.Link as={NavLink} to="/" exact >Home</Nav.Link>
+                                <Nav.Link as={NavLink} to="new">New Question</Nav.Link>
+                                <Nav.Link as={NavLink} to="/leader">Leaderboard</Nav.Link>
                             </Nav>
                             <Navbar.Text>
                                 Signed in as: {user === undefined? "": user.name}

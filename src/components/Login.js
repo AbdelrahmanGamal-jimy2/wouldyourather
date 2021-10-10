@@ -7,9 +7,6 @@ import {Redirect} from 'react-router-dom'
 
 class Login extends Component
 {
-    state = {
-        loggedIn: false
-    }
     handleLogin = (e)=>
     {
         e.preventDefault()
@@ -22,9 +19,9 @@ class Login extends Component
         const {users} = this.props
         const {authedUser} = this.props
         console.log(authedUser !== undefined)
-        if(authedUser !== undefined)
+        if(authedUser !== null)
         {
-            return (<Redirect to='/home' />)
+            return <Redirect to='/home' />
         }   
         return (
             <div>
