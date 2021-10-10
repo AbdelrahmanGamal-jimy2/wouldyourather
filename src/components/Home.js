@@ -23,7 +23,7 @@ class Home extends Component
         }
         return(
             <div>
-                <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3">
+                <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
                     <Tab eventKey="home" title="Unanswered Questions ">
                         <ul>
                             {
@@ -48,8 +48,8 @@ function mapStateToProps({questions,authedUser, users})
 {
     if(authedUser)
     {
-    const answeredQIDS = Object.keys(questions).filter((id)=> users[authedUser].answers.hasOwnProperty(id))
-    const unansweredQIDS = Object.keys(questions).filter((id)=> !users[authedUser].answers.hasOwnProperty(id))
+    const answeredQIDS = Object.keys(questions).filter((id)=> users[authedUser].answers.hasOwnProperty(id)).sort((a,b)=>questions[b].timestamp -questions[a].timestamp )
+    const unansweredQIDS = Object.keys(questions).filter((id)=> !users[authedUser].answers.hasOwnProperty(id)).sort((a,b)=>questions[b].timestamp -questions[a].timestamp )
     return{
         answeredQIDS,
         unansweredQIDS,
