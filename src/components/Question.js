@@ -1,24 +1,43 @@
 import React from "react";
 import { Component } from "react";
+import { connect } from "react-redux";
 import Card from 'react-bootstrap/Card'
+import Button from "react-bootstrap/Button";
+import AnswerQuestion from "./AnswerQuestion";
+import NewQuestion from './NewQuestion'
 
 class Question extends Component
 {
     render()
     {
+        const {questions} = this.props
+        const {users} = this.props
+        return(
         <div>
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img variant="top" src={users[questions[this.props.qID].author].avatarURL} />
                 <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Title>Would you rather</Card.Title>
                     <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                    {
+                        this.props.qID
+                    }
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary">View Pull</Button>
                 </Card.Body>
             </Card>
+            <AnswerQuestion qID = {this.props.qID}></AnswerQuestion>
+            <NewQuestion></NewQuestion>
         </div>
+        )
     }
 }
-export default Question
+
+function mapStateToProps({questions, users}, {qID})
+{
+    return{
+        questions,
+        users,
+    }
+}
+export default connect(mapStateToProps) (Question)

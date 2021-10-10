@@ -18,7 +18,7 @@ export function handleIntialQuestions()
 {
     return(dispatch)=>
     {
-        return _getQuestions().then(({questions})=>{
+        return _getQuestions().then((questions)=>{
             dispatch(getQuestions(questions))
         })
     }

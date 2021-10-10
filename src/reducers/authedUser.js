@@ -6,7 +6,6 @@ export default function authedUser(state = null, action){
     switch(action.type)
     {
         case SET_AUTHED_USER:
-            console.log("here")
             {
                 return action.id
             }
