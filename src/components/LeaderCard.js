@@ -19,10 +19,10 @@ class LeaderCard extends Component
                         name: {this.props.name}
                     </Card.Text>
                     <Card.Text>
-                        Score: {this.props.score}
+                        Number of questaions answered: {this.props.score}
                     </Card.Text>
                     <Card.Text>
-                        NumberOfQuestions: {this.props.NOQ}
+                        Number of questions created: {this.props.NOQ}
                     </Card.Text>
                 </Card.Body>
             </Card>

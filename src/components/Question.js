@@ -3,9 +3,6 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button";
-import AnswerQuestion from "./AnswerQuestion";
-import NewQuestion from './NewQuestion'
-import LeaderBoard from "./LeaderBoard";
 import { Link } from "react-router-dom";
 
 class Question extends Component
@@ -17,7 +14,7 @@ class Question extends Component
         const {qID} = this.props
 
         return(
-        <Link to={`/pull/${qID}`}>
+        <Link to={`/questions/${qID}`}>
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={users[questions[this.props.qID].author].avatarURL} />
                 <Card.Body>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Component, Fragment } from "react"
+import { Component } from "react"
 import Login from "./Login"
 import {connect} from 'react-redux'
 import Home from './Home'
@@ -7,12 +7,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 import NewQuestion from "./NewQuestion"
 import NavigationBar from "./NavigationBar"
 import AnswerQuestion from "./AnswerQuestion"
-
-
-import {setAuthed} from '../actions/authedUser'
 import {handleIntialUsers} from '../actions/shared'
 import {handleIntialQuestions} from '../actions/shared'
 import LeaderBoard from "./LeaderBoard"
+import PageNotFound from "./PageNotFound"
 
 class LoggedApp extends Component 
 {
@@ -30,9 +28,10 @@ class LoggedApp extends Component
               <NavigationBar/>
               <Route path='/' exact component={Login}/>
               <Route path='/home' component={Home}/>
-              <Route path='/pull/:id' component={AnswerQuestion}/>
-              <Route path='/new' component={NewQuestion}/>
-              <Route path='/Leader' component={LeaderBoard}/>
+              <Route path='/questions/:id' component={AnswerQuestion}/>
+              <Route path='/add' component={NewQuestion}/>
+              <Route path='/leaderboard' component={LeaderBoard}/>
+              <Route path='/testing' component={PageNotFound}/>
           </div>
       </Router>
     )

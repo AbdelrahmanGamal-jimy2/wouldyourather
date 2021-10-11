@@ -5,22 +5,17 @@ import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form'
 import {addAnswerToAPI} from '../actions/questions'
-import {handleIntialQuestions} from '../actions/shared'
-import {Link} from 'react-router-dom'
-import { withRouter } from "react-router";
+import {handleIntialQuestions, handleIntialUsers} from '../actions/shared'
+import { Redirect, withRouter } from "react-router";
 import { ProgressBar } from "react-bootstrap";
-
-
-import { useParams } from 'react-router-dom';
-
-
-
+import { Checkmark } from 'react-checkmark'
 
 
 class AnswerQuestion extends Component
 {
     state={
         answered: false,
+        optionID: 0
     }
     addAnswer = (e)=>
     {   e.preventDefault()
@@ -30,12 +25,16 @@ class AnswerQuestion extends Component
         if(e.target[0].checked)
         {
             this.props.dispatch((addAnswerToAPI(this.props.authedUser, qID, "optionOne")))
+            this.setState({answered: true, optionID: 1})
+
         }
         else{
             this.props.dispatch((addAnswerToAPI(this.props.authedUser, qID, "optionTwo")))
+            this.setState({answered: true, optionID: 2})
         }
         this.props.dispatch(handleIntialQuestions())
-        this.setState({answered: true})
+        this.props.dispatch(handleIntialUsers())
+        this.setState({answered: true, })
 
     }
     render()
@@ -43,6 +42,12 @@ class AnswerQuestion extends Component
         const {questions} = this.props
         const {users} = this.props
         const qID = this.props.match.params.id;
+        if(!questions.hasOwnProperty(qID))
+        {
+            return(
+               <Redirect to="/testing"/>
+            )
+        }
         const name = users[questions[qID].author].name
         const url = users[questions[qID].author].avatarURL
         const option1Number = questions[qID].optionOne.votes.length
@@ -53,7 +58,7 @@ class AnswerQuestion extends Component
         return (
             users[questions[qID].author].name !== undefined?             
                 <div>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '25rem' }}>
                     <Card.Title>Asked by {name}</Card.Title>
                     <Card.Img variant="top" src={url} />
                     <Card.Body>
@@ -76,9 +81,21 @@ class AnswerQuestion extends Component
                         <Button variant="primary" type= "submit"> Submit answer</Button>
                     </Form>:
                     <div>
-                        <label>{questions[qID].optionOne.text}</label>
-                        <ProgressBar now={oneBar} />
-                        <label>{questions[qID].optionTwo.text}</label>
+                        <label>{questions[qID].optionOne.text} Votes: {option1Number} %{Math.trunc(oneBar)}%</label>
+                        {
+                            this.state.optionID === 1? 
+                            <div style={{display: "inline-block"}}><Checkmark size="small" style={{display: "inline-block"}}></Checkmark></div>
+                            :
+                            null
+                        }
+                        <ProgressBar now={oneBar} /> 
+                        <label>{questions[qID].optionTwo.text} Votes: {option2Number} {Math.trunc(twoBar)}%</label>
+                        {
+                            this.state.optionID === 2? 
+                            <div style={{display: "inline-block"}}><Checkmark size="small" style={{display: "inline-block"}}></Checkmark></div>
+                            :
+                            null
+                        }
                         <ProgressBar now={twoBar} />
                     </div>
                     }

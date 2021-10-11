@@ -22,7 +22,7 @@ class LeaderBoard extends Component
         return(
             <div>
                 <ul>
-                    {Object.keys(users).map((id)=> <li><LeaderCard name={users[id].name} score = {Object.keys(users[id].answers).length} NOQ={users[id].questions.length} URL={users[id].avatarURL}></LeaderCard> </li>)}
+                    {Object.keys(users).map((id)=> <li key={id}><LeaderCard name={users[id].name} score = {Object.keys(users[id].answers).length} NOQ={users[id].questions.length} URL={users[id].avatarURL}></LeaderCard> </li>)}
                 </ul>
             </div>
         )

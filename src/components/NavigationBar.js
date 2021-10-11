@@ -1,17 +1,13 @@
 import React from "react";
 import { Component } from "react";
-
-import { Alert, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar'
 import { NavLink, Link } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav'
 import Button from "react-bootstrap/Button";
 import Image from 'react-bootstrap/Image'
-
 import {connect} from 'react-redux'
-
 import {removedAuthed} from '../actions/authedUser'
-import { Redirect } from "react-router";
 
 
 class NavigationBar extends Component
@@ -47,8 +43,8 @@ class NavigationBar extends Component
                             <Navbar.Toggle />
                             <Nav className="me-auto">
                                 <Nav.Link as={NavLink} to="/" exact >Home</Nav.Link>
-                                <Nav.Link as={NavLink} to="new">New Question</Nav.Link>
-                                <Nav.Link as={NavLink} to="/leader">Leaderboard</Nav.Link>
+                                <Nav.Link as={NavLink} to="add">New Question</Nav.Link>
+                                <Nav.Link as={NavLink} to="/leaderboard">Leaderboard</Nav.Link>
                             </Nav>
                             <Navbar.Text>
                                 Signed in as: {user === undefined? "": user.name}

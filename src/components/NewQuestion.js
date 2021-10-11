@@ -10,16 +10,24 @@ import { Redirect } from "react-router";
 
 class NewQuestion extends Component
 {
+    state={
+        submitted: false
+    }
     addQuestion = (e)=>
     {
         e.preventDefault()
         this.props.dispatch(addQuestionToAPI(e.target[0].value,e.target[1].value))
         this.props.dispatch(handleIntialQuestions())
+        this.setState({submitted: true})
     }
     render()
     {
-
-        const {users} = this.props
+        if(this.state.submitted)
+        {
+            return(
+                <Redirect to="/"></Redirect>
+            )
+        }
         if(this.props.authedUser === null)
         {
             return <Redirect to="/" ></Redirect>
